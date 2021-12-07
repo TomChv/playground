@@ -1,0 +1,74 @@
+type Category {
+    "Category's unique identifier"
+    id:         ID!
+    "Category's name"
+    name:       String!
+    "Category's product"
+    products:   [Product]
+}
+
+type Product {
+    "Product's unique identifier"
+    id:         ID!
+    "Product's name"
+    name:       String!
+    "Product's description"
+    desc:       String!
+    "Product's price"
+    price:      Int!
+    "Product's categories"
+    categories: [Category]
+}
+
+type Query {
+    "Say hello"
+    hello: String
+    "Say hello to the person give as parameter"
+    personalHello (name: String): String
+
+    "Retrieve all categories"
+    categories: [Category]
+    "Retrieve all products"
+    products: [Product]
+    "Retrieve a category by his identifier"
+    category (id: ID!): Category
+    "Retrieve a product by his identifier"
+    product (id: ID!): Product
+}
+
+input ProductInput {
+    "Product's name"
+    name:   String
+    "Product's description"
+    desc:   String
+    "Product's price"
+    price:  Int
+    "Product's categories"
+    categories: [ID]
+}
+
+input CategoryInput {
+    "Category's name"
+    name: String
+    "Category's product"
+    products: [ID]
+}
+
+type Mutation {
+    "Add the 2 number"
+    add(number1: Int, number2: Int): Int
+
+    "Create a new product"
+    createProduct(input: ProductInput!): Product
+    "Update product"
+    updateProduct(id: ID!, input: ProductInput): Product
+    "Delete product"
+    deleteProduct(id: ID): Product
+
+    "Create a new category"
+    createCategory(input: CategoryInput!): Category
+    "Update category"
+    updateCategory(id: ID!, input: CategoryInput): Category
+    "Delete category"
+    deleteCategory(id: ID): Category
+}
