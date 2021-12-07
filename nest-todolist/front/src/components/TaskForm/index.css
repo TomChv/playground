@@ -1,0 +1,67 @@
+.taskForm {
+  margin-left: calc(50% - 214px);
+  margin-top: 50px;
+  display: flex;
+  background-color: #8e8b8b;
+  width: 429px;
+  height: 451px;
+}
+.formBox {
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 20px;
+}
+.taskForm input {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  font-family: "Ravi Prakash", cursive;
+}
+textarea {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  font-family: "Ravi Prakash", cursive;
+}
+.taskForm button {
+  background-color: #2aa52f;
+  width: 69px;
+  height: 25px;
+  border-radius: 45px;
+  border: 1px solid black;
+  font-family: "Ravi Prakash", cursive;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.taskForm button:hover {
+  background-color: #39d83e;
+}
+
+.taskForm .titleInput {
+  background-color: transparent;
+  height: 45px;
+  width: 193px;
+  font-size: 25px;
+  border-bottom: 1px solid black;
+}
+
+.taskForm .contentInput {
+  background-color: #c4c4c4;
+  width: 349px;
+  height: 280px;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.taskForm textarea::placeholder,
+.taskForm input::placeholder {
+  opacity: 1;
+}

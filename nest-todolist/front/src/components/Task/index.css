@@ -1,0 +1,37 @@
+.task {
+  display: flex;
+  flex-direction: column;
+
+  width: 80%;
+  margin-bottom: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  height: 247px;
+
+  background-color: #887777;
+  text-align: left;
+  color: black;
+}
+.task p.taskName {
+  margin: 0;
+  margin-left: 20px;
+  height: 20%;
+  font-size: 27px;
+  margin-top: 10px;
+}
+.task .taskContent {
+  margin: 0;
+  background-color: #574949;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
+  height: 178px;
+  margin-bottom: 10px;
+}
+
+.task .taskContent p {
+  font-size: 15px;
+  margin-left: 20px;
+  overflow-y: auto;
+}
