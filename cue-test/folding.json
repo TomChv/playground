@@ -1,0 +1,10 @@
+{
+  "fold": {
+    "one": {
+      "props": "test"
+    },
+    "two": {
+      "propss": "toto"
+    }
+  }
+}
