@@ -1,0 +1,31 @@
+name: Continuous-Integration
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [main, dev]
+
+jobs:
+  ci:
+    runs-on: [ ubuntu-latest ]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        shell: bash
+        run: pip install -r requirement.txt
+
+      - name: Run test
+        shell: bash
+        run: python train.py
+
+      - name: Upload result
+        shell: bash
+        run: |
+          echo "### Report ${{ github.head_ref }}" > report.md
+
+          cml-publish result.png --md >> report.md
+          cml-send-comment report.md
