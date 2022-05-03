@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package messenger;
+
+// Set options
+option go_package = "./";
+
+// Message content
+message Content {
+  string body = 1;
+  uint64 date = 2;
+}
+
+// A simple messenger service
+service MessengerService {
+  rpc Send(Content) returns (Content);
+}
