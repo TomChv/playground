@@ -1,0 +1,21 @@
+# STAGE: auilder
+# Used to compile API into a Golang binary
+FROM golang:1.16-alpine AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN go mod download
+
+RUN go build -o server main.go
+
+# STAGE: app
+# Final easy-go API binary
+FROM alpine AS app
+
+WORKDIR /
+
+COPY --from=builder /app/server /server
+
+ENTRYPOINT ["/server"]
