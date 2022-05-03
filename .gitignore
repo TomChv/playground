@@ -1,5 +1,7 @@
 # IDEA
 .idea/
+.encore/
+.DS_STORE
 
 # Logs
 logs
