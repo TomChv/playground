@@ -35,6 +35,7 @@ func main() {
 	}
 
 	// Loop through it and display kind
+	// Note: we could do it recursively though all structures and list nested
 	log.Println("Loop through value")
 	for i.Next() != false {
 		log.Println("Path: '", i.Value().Path(), "Kind: '", i.Value().Kind(), "'Undefined kind: '", i.Value().IncompleteKind(), "'")

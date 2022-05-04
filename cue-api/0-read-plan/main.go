@@ -25,11 +25,5 @@ func main() {
 	// It returns a usable value.
 	v := cuectx.BuildInstance(instances[0])
 
-	// Marshal cue value to display it
-	json, err := v.MarshalJSON()
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Println(string(json))
+	fmt.Println(v)
 }
