@@ -9,3 +9,5 @@ package hello
 #SayBonjour: {
 	bonjour: "bonjour"
 }
+
+#Unused: string

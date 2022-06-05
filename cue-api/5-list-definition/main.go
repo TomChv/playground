@@ -104,5 +104,4 @@ func Walk(v cue.Value, before func(cue.Value) bool, after func(cue.Value)) {
 	if after != nil {
 		after(v)
 	}
-
 }
