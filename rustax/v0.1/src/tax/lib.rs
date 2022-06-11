@@ -1,7 +1,7 @@
 mod tax;
 
 use std::fmt;
-use tax::*;
+use crate::tax::*;
 
 // Calculator is a simple structure to calculate taxes on an income
 #[derive(Debug)]
@@ -50,18 +50,16 @@ impl fmt::Display for Calculator {
 
 #[cfg(test)]
 mod tests {
-    use crate::tax::Calculator;
-
     #[test]
     fn can_create() {
-        let calculator = Calculator::new(4.0);
+        let calculator = crate::Calculator::new(4.0);
         assert_eq!(calculator.income, 4.0)
     }
 
     // Based on https://www.service-public.fr/particuliers/vosdroits/F1419
     #[test]
     fn can_compute() {
-        let calculator = Calculator::new(30_000.0);
+        let calculator = crate::Calculator::new(30_000.0);
         assert_eq!(calculator.taxe(), 2_921.95)
     }
 }
