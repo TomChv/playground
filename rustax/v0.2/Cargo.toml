@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "rustax",
+    "tax",
+    "cli"
+]
