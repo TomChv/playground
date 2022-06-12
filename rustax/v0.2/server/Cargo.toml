@@ -1,16 +1,9 @@
 [package]
-name = "rustax"
+name = "server"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-tax = { path = "../tax" }
-cli = { path = "../cli" }
-server = { path = "../server" }
-
-clap = { version = "3.1.18", features = ["derive"] }
 
 [dependencies.rocket]
 version = "0.5.0-rc.2"
