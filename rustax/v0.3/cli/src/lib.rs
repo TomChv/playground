@@ -1,10 +1,30 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 
-/// Simple program to greet a person
-#[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
-pub struct Args {
-    /// Set the amount of tax to calculate
-    #[clap(short, long)]
-    pub amount: f32,
+/// A binary to calculate or run a tax calculator server
+#[derive(Parser)]
+#[clap(author, name = "rustax", version = "0.3", about)]
+pub struct Cli {
+    #[clap(subcommand)]
+    pub command: Commands,
+}
+
+#[derive(Subcommand)]
+pub enum Commands {
+    /// Directly calculate tax
+    Calc {
+        /// Set the amount of tax to calculate
+        #[clap(long)]
+        amount: f32,
+    },
+
+    /// Start rustax server
+    Serv {
+        /// Set server port
+        #[clap(long)]
+        port: i32,
+
+        /// Set server host
+        #[clap(long)]
+        host: String
+    },
 }
