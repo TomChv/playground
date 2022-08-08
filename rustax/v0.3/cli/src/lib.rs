@@ -20,11 +20,11 @@ pub enum Commands {
     /// Start rustax server
     Serv {
         /// Set server port
-        #[clap(long)]
+        #[clap(long, default_value_t = 8888)]
         port: i32,
 
         /// Set server host
-        #[clap(long)]
+        #[clap(long, default_value = "0.0.0.0")]
         host: String
     },
 }

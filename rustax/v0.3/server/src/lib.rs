@@ -23,9 +23,12 @@ fn calc(amount: f32) -> Json<Amount> {
     return Json(Amount { amount: result });
 }
 
-#[rocket::main]
-pub async fn server() -> Result<(), rocket::Error> {
-    let _rocket = rocket::build()
+pub async fn server(port: &i32, host: &String) -> Result<(), rocket::Error> {
+    let figment = rocket::Config::figment()
+        .merge(("port", port))
+        .merge(("address", host));
+
+    let _rocket = rocket::custom(figment)
         .mount("/hello", routes![world])
         .mount("/tax", routes![calc])
         .launch()

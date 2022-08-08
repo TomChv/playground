@@ -1,10 +1,13 @@
+extern crate rocket;
+
 use clap::Parser;
 
 use server::server;
 use tax::Calculator;
 use cli::{Cli, Commands};
 
-fn main() {
+#[rocket::main]
+async fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
@@ -16,7 +19,7 @@ fn main() {
         }
 
         Commands::Serv { port, host } => {
-            match server() {
+            match server(port, host).await {
                 Ok(_) => {},
                 Err(err) => panic!("error {}", err),
             };
