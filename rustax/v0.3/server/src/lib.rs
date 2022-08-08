@@ -15,15 +15,15 @@ struct Amount {
     amount: f32,
 }
 
-#[get("/?<amount>")]
-fn calc(amount: f32) -> Json<Amount> {
-    let calc = Calculator::new(amount);
-    let result = calc.taxe();
+#[get("/?<amount>&<tax_allowance>")]
+fn calc(amount: f32, tax_allowance: f32) -> Json<Amount> {
+    let calc = Calculator::new(amount, tax_allowance);
+    let result = calc.tax();
 
     return Json(Amount { amount: result });
 }
 
-pub async fn server(port: &i32, host: &String) -> Result<(), rocket::Error> {
+pub async fn server(port: &i32, host: &str) -> Result<(), rocket::Error> {
     let figment = rocket::Config::figment()
         .merge(("port", port))
         .merge(("address", host));

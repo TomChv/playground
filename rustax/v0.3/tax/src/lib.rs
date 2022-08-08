@@ -8,14 +8,17 @@ use crate::tax::*;
 pub struct Calculator {
     pub income: f32,
 
+    tax_allowance: f32,
+
     taxes: [Tax; 5],
 }
 
 impl Calculator {
     // New create a new instance of Tax
-    pub fn new(income: f32) -> Self {
+    pub fn new(income: f32, tax_allowance: f32) -> Self {
         Self {
             income,
+            tax_allowance,
             taxes: [
                 Tax::new(0.0, 10225.0, 0.0),
                 Tax::new(10225.0, 26070.0, 11.0),
@@ -26,14 +29,15 @@ impl Calculator {
         }
     }
 
-    pub fn taxe(&self) -> f32 {
+    pub fn tax(&self) -> f32 {
         let mut taxes: f32 = 0.0;
+        let income = self.income / 100.0 * (100.0 - self.tax_allowance);
 
         for t in self.taxes {
-            if self.income > t.max {
+            if income > t.max {
                 taxes += (t.max - t.min) / 100.0 * t.percentage
             } else {
-                taxes += (self.income - t.min) / 100.0 * t.percentage;
+                taxes += (income - t.min) / 100.0 * t.percentage;
                 break;
             }
         }
@@ -44,7 +48,7 @@ impl Calculator {
 
 impl fmt::Display for Calculator {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "({}, {:#?})", self.income, self.taxes)
+        write!(f, "({}, {}, {:#?})", self.income, self.tax_allowance, self.taxes)
     }
 }
 
@@ -52,14 +56,20 @@ impl fmt::Display for Calculator {
 mod tests {
     #[test]
     fn can_create() {
-        let calculator = crate::Calculator::new(4.0);
+        let calculator = crate::Calculator::new(4.0, 0.0);
         assert_eq!(calculator.income, 4.0)
     }
 
     // Based on https://www.service-public.fr/particuliers/vosdroits/F1419
     #[test]
     fn can_compute() {
-        let calculator = crate::Calculator::new(30_000.0);
-        assert_eq!(calculator.taxe(), 2_921.95)
+        let calculator = crate::Calculator::new(30_000.0, 0.0);
+        assert_eq!(calculator.tax(), 2_921.95)
+    }
+
+    #[test]
+    fn can_compute_with_tax_allowance() {
+        let calculator = crate::Calculator::new(30_000.0, 30.0);
+        assert_eq!(calculator.tax(), 1_185.25)
     }
 }

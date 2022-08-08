@@ -15,6 +15,9 @@ pub enum Commands {
         /// Set the amount of tax to calculate
         #[clap(long)]
         amount: f32,
+
+        #[clap(long, default_value_t = 0.0)]
+        tax_allowance: f32
     },
 
     /// Start rustax server

@@ -1,4 +1,4 @@
-extern crate rocket;
+ extern crate rocket;
 
 use clap::Parser;
 
@@ -11,9 +11,9 @@ async fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Calc { amount } => {
-            let calc = Calculator::new(*amount);
-            let result = calc.taxe();
+        Commands::Calc { amount, tax_allowance } => {
+            let calc = Calculator::new(*amount, *tax_allowance);
+            let result = calc.tax();
         
             println!("For an income of {}, you'll pay {}€ of tax", amount, result);
         }
