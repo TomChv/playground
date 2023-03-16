@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "8f2daee7-328d-42fb-95ba-f81f9fab0ef1",
+		"name": "Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10575948"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/clothes/articles",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clothes",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"name\": \"Test\",\n            \"state\": \"NeufA\",\n            \"size\": \"S\",\n            \"brand\": \"Adidas\",\n            \"image_url\": \"https://dagger.io\",\n            \"description\": \"DGFD\",\n            \"buy_price\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/clothes/articles/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clothes",
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"sold\": true,\n            \"sold_price\": 45\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/clothes/articles/3/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clothes",
+						"articles",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/clothes/articles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clothes",
+						"articles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/clothes/articles/2/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clothes",
+						"articles",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

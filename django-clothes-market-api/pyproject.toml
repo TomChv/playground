@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "django-clothes-market-api"
+version = "0.1.0"
+description = "A simple REST API made with django to sell clothes"
+authors = ["Vasek - Tom C. <tom.chauveau@epitech.eu>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_clothes_market_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.1.7"
+django-enum = "^1.1.2"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
