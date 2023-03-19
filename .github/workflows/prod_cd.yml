@@ -6,6 +6,14 @@ on:
       version:
         description: 'Version of the new release (e.g., v1.0.0)'
         required: true
+      bump:
+        description: |
+          Degree of version bump 'patch|minor|major' (should match with targeted version).
+          Example:
+            - v1.0.0 -> v1.0.1: patch
+            - v1.0.0 -> v1.1.0: minor
+            - v1.0.0 -> v2.0.0: major
+        required: true
 
 jobs:
   build_test_stack:
@@ -33,5 +41,4 @@ jobs:
       - name: Release version
         uses: rymndhng/release-on-push-action@master
         with:
-          release_name: ${{ github.event.inputs.version }}
-          bump_version_scheme: minor
+          bump_version_scheme: ${{ github.event.inputs.bump }}
