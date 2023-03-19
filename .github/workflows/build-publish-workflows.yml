@@ -53,7 +53,7 @@ jobs:
         with:
           result-encoding: string
           script: | 
-            const tags = ${{ inputs.tag }}
+            const tags = "${{ inputs.tag }}"
 
             const result = tags
               .split(",") // Split by comma
