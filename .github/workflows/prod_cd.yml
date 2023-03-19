@@ -3,9 +3,6 @@ name: Production integration
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version of the new release (e.g., v1.0.0)'
-        required: true
       bump:
         description: |
           Degree of version bump 'patch|minor|major' (should match with targeted version).
@@ -22,11 +19,12 @@ jobs:
         - app2
     name: Build ${{ matrix.stack }}
     uses: tomchv/playground/.github/workflows/build-publish-workflows.yml@main
+    needs: release-version
     secrets:
       REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
     with:
       app: ${{ matrix.stack }}
-      tag: latest, ${{ github.event.inputs.version }}
+      tag: latest, ${{ needs.release-version.outputs.tag }}
       context: version-releaser/${{ matrix.stack }}
       dockerfile: version-releaser/${{ matrix.stack }}/Dockerfile
 
@@ -35,8 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      tag: ${{ steps.release.outputs.tag_name }}
     steps:
       - name: Release version
         uses: rymndhng/release-on-push-action@master
+        id: release
         with:
           bump_version_scheme: ${{ github.event.inputs.bump }}
