@@ -34,3 +34,4 @@ jobs:
         uses: rymndhng/release-on-push-action@master
         with:
           release_name: ${{ github.event.inputs.version }}
+          bump_version_scheme: minor
