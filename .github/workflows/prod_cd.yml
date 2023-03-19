@@ -1,0 +1,36 @@
+name: Production integration
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the new release (e.g., v1.0.0)'
+        required: true
+
+jobs:
+  build_test_stack:
+    strategy:
+      matrix:
+        stack: 
+        - app1
+        - app2
+    name: Build ${{ matrix.stack }}
+    uses: tomchv/playground/.github/workflows/build-publish-workflows.yml@main
+    secrets:
+      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+    with:
+      app: ${{ matrix.stack }}
+      tag: latest, ${{ github.event.inputs.version }}
+      context: version-releaser/${{ matrix.stack }}
+      dockerfile: version-releaser/${{ matrix.stack }}/Dockerfile
+
+  release-version:
+    name: Release new version
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Release version
+        uses: rymndhng/release-on-push-action@master
+        with:
+          release_name: ${{ github.event.inputs.version }}

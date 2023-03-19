@@ -1,0 +1,22 @@
+name: Development integration
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_test_stack:
+    strategy:
+      matrix:
+        stack: 
+        - app1
+        - app2
+    name: Build ${{ matrix.stack }}
+    uses: tomchv/playground/.github/workflows/build-publish-workflows.yml@main
+    secrets:
+      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+    with:
+      app: ${{ matrix.stack }}
+      tag: dev
+      context: version-releaser/${{ matrix.stack }}
+      dockerfile: version-releaser/${{ matrix.stack }}/Dockerfile
