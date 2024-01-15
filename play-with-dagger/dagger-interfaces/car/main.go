@@ -6,20 +6,20 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
-type ICar interface {
+type Icar interface {
 	DaggerObject
 
-	WithModel(model string) ICar
-	WithSpeed(speed int) ICar
-	WithColor(color string) ICar
+	WithModel(model string) Icar
+	WithSpeed(speed int) Icar
+	WithColor(color string) Icar
 	Drive(ctx context.Context) error
 }
 
 type Car struct {
-	Cars []ICar
+	Cars []Icar
 }
 
-func (c *Car) WithCar(car ICar) *Car {
+func (c *Car) WithCar(car Icar) *Car {
 	c.Cars = append(c.Cars, car)
 
 	return c
