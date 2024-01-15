@@ -1,0 +1,10 @@
+{
+  "name": "race",
+  "root": "../",
+  "sdk": "go",
+  "dependencies": [
+    "../audi",
+    "../bmw",
+    "../car"
+  ]
+}
